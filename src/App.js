@@ -1,31 +1,28 @@
 
 import './App.css';
 
-import React, { Component } from 'react'
+import React from 'react'
 import Navbar from './components/Navbar';
 import LoadingBar from 'react-top-loading-bar'
 import News from './News' ;
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
+import { BrowserRouter as Router,Switch, Route,} from "react-router-dom";
+import { useState } from 'react';
 
-} from "react-router-dom";
-
-
-export default class App extends Component { 
+const App =()=> { 
   
-state ={
-  progress:0
-}
+// const state =()=>{
+//   progress:0
+// }
 
-setProgress =(progress)=>{
-  this.setState({progress :progress})
-}
+const [progress, setProgress] = useState(0)
 
-size = 5;
-  render() {
+// setProgress =(progress)=>{
+//   setState({progress :progress})
+// }
+
+const size = 5;
+ 
     return (
       <div>
       <Router>
@@ -33,20 +30,21 @@ size = 5;
       <LoadingBar
         color='red'
         height={3}
-        progress={this.state.progress}
+        progress={progress}
        
       />
       <Switch>
 
 
-      <Route exact path="/"> <News setProgress={this.setProgress} key="general" size={this.size} country="in" category="general"/>  </Route>
-      <Route exact path="/business"> <News setProgress={this.setProgress} key="business" size={this.size} country="in" category="business"/>  </Route>
-      <Route exact path="/general "> <News setProgress={this.setProgress} key="general" size={this.size} country="in" category="general"/>  </Route>
-      <Route exact path="/health "> <News setProgress={this.setProgress} key="health" size={this.size} country="in" category="health"/>  </Route>
-      <Route exact path="/science "> <News setProgress={this.setProgress} key="science" size={this.size} country="in" category="science"/>  </Route>
-      <Route exact path="/sports"> <News setProgress={this.setProgress} key="sports" size={this.size} country="in" category="sports"/>  </Route>
-      <Route exact path="/technology"> <News setProgress={this.setProgress} key="technology" size={this.size} country="in" category="technology"/>  </Route>
+      <Route exact path="/"> <News setProgress={setProgress} key="general" size={size} country="in" category="general"/>  </Route>
+      <Route exact path="/business"> <News setProgress={setProgress} key="business" size={size} country="in" category="business"/>  </Route>
+      <Route exact path="/general "> <News setProgress={setProgress} key="general" size={size} country="in" category="general"/>  </Route>
+      <Route exact path="/health "> <News setProgress={setProgress} key="health" size={size} country="in" category="health"/>  </Route>
+      <Route exact path="/science "> <News setProgress={setProgress} key="science" size={size} country="in" category="science"/>  </Route>
+      <Route exact path="/sports"> <News setProgress={setProgress} key="sports" size={size} country="in" category="sports"/>  </Route>
+      <Route exact path="/technology"> <News setProgress={setProgress} key="technology" size={size} country="in" category="technology"/>  </Route>
     
+      
     
     </Switch>
      
@@ -55,4 +53,5 @@ size = 5;
       </div>
     )
   }
-}
+
+export default App
